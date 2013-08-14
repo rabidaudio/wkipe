@@ -1,0 +1,31 @@
+RewriteEngine on
+
+#ORIGINAL
+#RewriteCond %{HTTP_HOST} ^\*\.wki\.pe$ [OR]
+#RewriteCond %{HTTP_HOST} ^www\.\*\.wki\.pe$
+#RewriteRule ^/?$ "wki\.pe" [R=301,L]
+
+#RewriteCond %{SCRIPT_FILENAME} !-f
+#RewriteRule ^(.*) /qtest.php?$1
+#######################################
+
+#send rabidaudio.com to blog
+RewriteCond %{HTTP_HOST} ^rabidaudio\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.rabidaudio\.com$
+RewriteRule ^/?$ "http\:\/\/blog\.rabidaudio\.com\/" [R=301,L]
+
+#if no article is specified, go home
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^$ /index.php [L]
+
+#if subdomain is neither blank nor www, write as c|article
+RewriteCond %{HTTP_HOST} ^(.*)\.wki\.pe$
+RewriteCond %{HTTP_HOST} !^www\.wki\.pe$
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^(.*) /redirect.php?$1|%1 [L]
+
+#if www or no subdomain, write as article
+RewriteCond %{HTTP_HOST} ^www\.wki\.pe$ [OR]
+RewriteCond %{HTTP_HOST} ^wki\.pe$
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^(.*) /redirect.php?$1
