@@ -6,12 +6,23 @@
 $(document).ready(function() {
 	$('#sec_alias').hide();
 	$('#hdn_advanced').val('0');
+	funkitron();
+	$('#txt_url, #txt_alias').change(funkitron);
 });
 
 function showAdvanced(){
 	$('#sec_alias').show('slow');
 	$('#btn_alias').hide('slow');
 	$('#hdn_advanced').val('1');
+}
+function funkitron(){
+	if( ($('#txt_url').val().length>0) && ( $('#hdn_advanced').val()=='0'
+		|| ($('#hdn_advanced').val()=='1'
+			&& $('#txt_alias').val().length>0) ){
+		$('#btn_submit').prop("disabled",false);
+	}else{
+		$('#btn_submit').prop("disabled",true);
+	}	
 }
 </script>
 <script type="text/javascript">

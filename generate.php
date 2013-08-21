@@ -3,7 +3,15 @@ include('inc/gfunctions.inc.php');
 //print_r($_POST);
 //Array ( [txt_url] => ZXC [txt_alias] => sdfg [btn_submit] => Generate ) 
 //Array ( [hdn_advanced] => 1 [txt_url] => asdf [txt_alias] => asdf [chk_locale] => on [btn_submit] => Generate )
-
+if (!$_POST['txt_url']){
+	die("<p>You must include the destination URL. <a href=\"index.php\">Click here</a> to try again.</p>")
+}
+if ($_POST['hdn_advanced']===1 and !$_POST['txt_alias']){
+	die("<p>You must include an alias, or generate a normal link. <a href=\"index.php\">Click here</a> to try again.</p>")
+}
+if (!$_POST['btn_submit']){
+	die("<p>You need to use <a href='index.php'>this page</a> to generate your shortened URLs.</p>")
+}
 if ($_POST['hdn_advanced']==='1'){
 	if ($_POST['chk_locale']==="on"){
 		$locale=get_lang_code();
