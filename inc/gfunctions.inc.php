@@ -17,6 +17,7 @@ function generate_normal($art) {
 	//then return wki.pe url
 	$art=preg_replace('/^https?:\/\//','',$art);
 	$art=preg_replace('/.*?wikipedia.org\/wiki\//','',$art);
+	$art=preg_replace('/ /','_', $art);
 	return "wki.pe/".$art;
 }
 function generate_alias($art, $alias, $locale="NULL") {
@@ -32,6 +33,7 @@ function generate_alias($art, $alias, $locale="NULL") {
 	
 	$art=preg_replace('/^https?:\/\//','',$art);
 	$art=preg_replace('/.*?wikipedia.org\/wiki\//','',$art);
+	$art=preg_replace('/ /','_', $art);
 	if ($locale != "NULL"){
 		$locale="'".$locale."'";
 	}
