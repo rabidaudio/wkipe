@@ -1,0 +1,33 @@
+*test get_lang_code
+finish and test article_prefetch
+*get Apache to rewrite URLS
+*Learn SQL
+*add alias support
+
+*Add gfunctions with functions:
+*	generate_normal(article) return simple url
+*	generate_alias(article, alias, locale)
+*make generate
+*make index with form
+
+error check
+create error pages
+create other pages
+beautify
+
+*get hosting and domain name
+*release Beta!
+
+---------------------
+Convert all pages to jquery-ui with mediawiki css
+*add legal page
+add contact page
+get autocomplete working for other languages
+implement language selector
+fix weirdass unicode bugs
+cleanup verbage
+mobile-friendly
+
+add sidebar of recently accessed links (neat-o, right!?)
+
+SPREAD THE WORD
