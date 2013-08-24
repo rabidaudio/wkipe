@@ -74,7 +74,7 @@ function funkitron(){
 <body>
 <div id="content">
 <p><img src="wkipe-logo.png" alt="Wki.pe" style="width:250px">
-<br/><em>A URL shortener for Wikipedia articles</em>
+<div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
 </p>
 <p>ADD DISCRIPTION
 Then we need a link to the <a href=faq.html>FAQ PAGE</a><br/>
@@ -82,6 +82,7 @@ And finally copyright (or rather COPYLEFT) info and privacy policy.
 </p>
 <p>
 <form id="frm_generate" name="frm_generate" action="generate.php" method="post">
+<fieldset>
 <input id="hdn_advanced" type="hidden" name="hdn_advanced" value="">
 The name (or URL) of the Wikipedia article:<br>
 <input id="txt_url" type="text" name="txt_url"><br>
@@ -94,6 +95,7 @@ Shorthand alias:<br/>
 </div>
 <input id="btn_alias" type="button" name="btn_alias" onClick="showAdvanced();" value="Add Aliasing">
 <input id="btn_submit" type="submit" name="btn_submit" value="Generate">
+</fieldset>
 </form>
 </p>
 <br/><br/>
