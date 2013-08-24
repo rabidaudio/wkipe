@@ -26,7 +26,7 @@ if ($_POST['hdn_advanced']==='1'){
 	$out=generate_normal($_POST['txt_url']);
 }
 //echo utf8_decode(rawurldecode($out))."<br>";
-echo "Shortened URL generated successfully!<br><h3>".$out."</h3><br><a href='http://".$out."'>Try it out!</a>";
+echo "Shortened URL generated successfully!<br><h3>".$out.'</h3><br><a href=\'http://'.str_replace('%2F','/',rawurlencode($out)).'\'>Try it out!</a>';
 
 /*if (preg_match("/wikipedia\.org/", $_POST["article"])){
 	$url=$_POST["article"];

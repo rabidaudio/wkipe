@@ -25,10 +25,14 @@ function generate_normal($art) {
 	//remove any other whitespace
 	//make sure the string isn't empty
 	//then return wki.pe url
+	//echo "<p>$art becomes ";
 	$art=preg_replace('/^https?:\/\//','',$art);
 	$art=preg_replace('/.*?wikipedia.org\/wiki\//','',$art);
 	$art=preg_replace('/ /','_', $art);
+	$art=stripslashes($art);
+	//echo "$art</p>";
 	return "wki.pe/".$art;
+	//return $art;
 }
 function generate_alias($art, $alias, $locale="NULL") {
 	//remove any illegal characters
