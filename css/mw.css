@@ -67,6 +67,8 @@ div#footer {
 margin-left:10em;
 margin-right:10em;
 text-align:center;
+margin-bottom:2em;
+min-width:180px;
 }
 
 ul#sidebar {

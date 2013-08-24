@@ -1,6 +1,7 @@
 <html>
 <head>
 <title>wki.pe - A URL shortener for Wikipedia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="jquery-1.10.1.min.js"></script>
   <script type="text/javascript" src="jquery-ui-1.10.3.custom.min.js"></script>
   <link rel="stylesheet" href="css/mw.css" />
@@ -73,7 +74,7 @@ function funkitron(){
 </head>
 <body>
 <div id="content">
-<p><img src="wkipe-logo.png" alt="Wki.pe" style="width:250px">
+<p><a href="http://wki.pe/"><img src="wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
 <div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
 </p>
 <p>ADD DISCRIPTION
@@ -102,7 +103,7 @@ Shorthand alias:<br/>
 <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://wki.pe"></a>
 </div>
 <div id="footer">
-<a href=faq.html>FAQ</a> | Contact | Legal
+<a href="index.php">Home</a> | <a href=faq.html>FAQ</a> | Contact | <a href="legal.html">Legal</a>
 </div>
 </body>
 </html>

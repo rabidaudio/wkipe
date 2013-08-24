@@ -1,5 +1,5 @@
 <?php
-include('inc/gfunctions.inc.php');
+include('inc/functions.inc.php');
 //print_r($_POST);
 //Array ( [txt_url] => ZXC [txt_alias] => sdfg [btn_submit] => Generate ) 
 //Array ( [hdn_advanced] => 1 [txt_url] => asdf [txt_alias] => asdf [chk_locale] => on [btn_submit] => Generate )
