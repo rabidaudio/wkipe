@@ -48,6 +48,7 @@ function generate_alias($art, $alias, $locale="NULL") {
 	$art=preg_replace('/^https?:\/\//','',$art);
 	$art=preg_replace('/.*?wikipedia.org\/wiki\//','',$art);
 	$art=preg_replace('/ /','_', $art);
+	$art=stripslashes($art);
 	if ($locale != "NULL"){
 		$locale="'".$locale."'";
 	}
