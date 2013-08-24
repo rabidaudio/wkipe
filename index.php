@@ -11,8 +11,8 @@ $(document).ready(function() {
 	$( "input[type=submit], input[type=button], button" ).button();
 	$('#sec_alias').hide();
 	$('#hdn_advanced').val('0');
-	funkitron();
-	$('#txt_url, #txt_alias').keyup(funkitron);
+	state_update();
+	$('#txt_url, #txt_alias').keyup(state_update);
 
 	//so we want to grab the user's locale language #TODO add a language selector!
 	// and then use this guy: http://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=QUERY
@@ -40,10 +40,10 @@ function showAdvanced(){
 	$('#sec_alias').show('slow');
 	$('#btn_alias').hide('slow');
 	$('#hdn_advanced').val('1');
-	funkitron();
+	state_update();
 }
 
-function funkitron(){
+function state_update(){
 	//if txt_url is a url, disable autofill
 	var urlpat = new RegExp("^https?://");
 	if( urlpat.test( $('#txt_url').val() ) ){
