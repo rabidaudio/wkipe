@@ -1,0 +1,25 @@
+<script type="text/javascript" src="main.js"></script>
+<div id="dia_generate" title="Shortener"><h3>Wait a minute!</h3><p>I'm not sure what article to use.</p></div>
+<p>ADD DISCRIPTION
+Then we need a link to the <a href="faq.html" dest="local">FAQ PAGE</a><br/>
+And finally copyright (or rather COPYLEFT) info and privacy policy.
+</p>
+<p>
+<form id="frm_generate" name="frm_generate" action="generate.php" method="post">
+<fieldset>
+<input id="hdn_advanced" type="hidden" name="hdn_advanced" value="">
+The name (or URL) of the Wikipedia article:<br>
+<input id="txt_url" type="text" name="txt_url"><br>
+<div id="sec_alias">
+Shorthand alias:<br/>
+<input id="txt_alias" type="text" name="txt_alias">
+<p>
+<input id="chk_locale" type="checkbox" name="chk_locale">Use my language
+</p>
+</div>
+<input id="btn_alias" type="button" name="btn_alias" onClick="showAdvanced();" value="Add Aliasing">
+<input id="btn_submit" type="button" name="btn_submit" onClick="generateURL();" value="Generate">
+<!--<input id="btn_submit" type="submit" name="btn_submit" value="Generate">-->
+</fieldset>
+</form>
+</p>

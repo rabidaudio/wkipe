@@ -27,7 +27,8 @@ if ($_POST['hdn_advanced']==='1'){
 	$out=generate_normal($_POST['txt_url']);
 }
 //echo utf8_decode(rawurldecode($out))."<br>";
-echo "Shortened URL generated successfully!<h3 id='txt_short'>".$out.'</h3><a id="btn_tryit" target="_blank" href=\'http://'.str_replace('%2F','/',rawurlencode($out)).'\'>Try it out!</a>';
+echo "Shortened URL generated successfully!<h3><span id='txt_short'>".$out.'<span></h3><a id="btn_tryit" target="_blank" href=\'http://'.str_replace('%2F','/',rawurlencode($out)).'\'>Try it out!</a>';
+echo '<input id="btn_clipboard" type="button" onclick="clipit()" value="Select for copying"/>';
 //<input id="btn_clipboard" type="button" name="btn_clipboard" onClick="clipit();" value="Copy to Clipboard"/>
 
 /*if (preg_match("/wikipedia\.org/", $_POST["article"])){

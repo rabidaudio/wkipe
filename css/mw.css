@@ -1,7 +1,7 @@
 /*
 * Most of this little bit of CSS is  borrowed from MediaWiki
-* [http://www.mediawiki.org], which is licenced under the GPLv2.
-* and are Copyrighted by MediaWiki. I release the rest (if you
+* [http://www.mediawiki.org], which is licenced under the GPLv2
+* and is copyrighted by MediaWiki. I release the rest (if you
 * actually want to figure out what that is) under public domain.
 */
 
@@ -94,4 +94,8 @@ span#flattr{
 position: absolute;
 margin-top: .1em;
 margin-left: .4em;
+}
+
+div#loading{
+text-align:center;
 }

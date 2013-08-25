@@ -16,7 +16,7 @@ RewriteRule ^/?$ "http\:\/\/blog\.rabidaudio\.com\/" [R=301,L]
 
 #if no article is specified, go home
 RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteRule ^$ /index.php [L]
+RewriteRule ^$ /index.html [L]
 
 #if subdomain is neither blank nor www, write as c|article
 RewriteCond %{HTTP_HOST} ^(.*)\.wki\.pe$

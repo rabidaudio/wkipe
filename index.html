@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>wki.pe - A URL shortener for Wikipedia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="jquery-1.10.1.min.js"></script>
+  <script type="text/javascript" src="jquery-ui-1.10.3.custom.min.js"></script>
+  <link rel="stylesheet" href="css/mw.css" />
+  <link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.3.custom.min.css" />
+<script type="text/javascript">
+//This is the script that controls the single-page app (page loading)
+$(document).ready(function() {
+	//$('#loading').hide();
+	setpage("main.html");
+	$( 'a[dest="local"]' ).click(function(e){
+		var destination = $(this).attr('href');
+		e.preventDefault();
+		setpage(destination);
+	});
+});
+
+function setpage(destination){
+	$('#loading').show();
+	$('#inner_page').hide();//"slide", {direction: "up"});
+	$.ajax({
+		url: destination, 
+		success: function(data, textStatus, jqXHR){
+			//alert(data);
+			$('#inner_page').html(data);
+		}
+	});
+	$('#loading').hide();
+	$('#inner_page').show("slide", {direction: "down"});
+	$( 'a[dest != "local"]' ).attr("target", "_blank");
+}
+</script>
+<script type="text/javascript">
+//This is Flattr business
+
+/* <![CDATA[ */
+    (function() {
+        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+        t.parentNode.insertBefore(s, t);
+    })();
+/* ]]> */</script>
+</head>
+<body>
+<div id="content">
+<p><a href="http://wki.pe/"><img src="wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
+<div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
+</p>
+<div id="loading"><img src="loading.gif" alt="just a sec..."></div>
+<div id="inner_page">
+</div>
+</div>
+<div id="footer">
+<a href="main.html" dest="local">Home</a> | <a href="faq.html" dest="local">FAQ</a> | Contact | <a href="legal.html" dest="local">Legal</a> | 
+<span id='flattr'><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://wki.pe"></a></span>
+</div>
+</body>
+</html>
