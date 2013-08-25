@@ -9,8 +9,9 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$( "input[type=submit], input[type=button], button" ).button();
-	$('#sec_alias').hide();
-	$('#hdn_advanced').val('0');
+	$( '#dia_generate' ).dialog({modal: true, autoOpen: false});
+	$( '#sec_alias' ).hide();
+	$( '#hdn_advanced' ).val('0');
 	state_update();
 	$('#txt_url, #txt_alias').keyup(state_update);
 
@@ -60,8 +61,71 @@ function state_update(){
 		$('#btn_submit').button( "disable" );
 	}	
 }
+
+function generateURL(){
+	//replaces the submit action with a jQuery $.post() command, so we can have more control
+	$.post('generate.php',$('#frm_generate').serialize(), function(data){
+			//alert(data);
+			$('#dia_generate').html(data);
+			$('#btn_tryit').button();
+			$('#dia_generate').dialog("open");
+		}
+	);
+}
+
+/* SO THIS ONLY WORKS FOR OLD IE, which is buggy as shit with jQuery UI to the point of being unusable.
+
+
+function clipit(){
+	copyToClipboardCrossbrowser( $('#txt_short').text() );
+}
+
+//TRYING TO DO THIS WITHOUT FUCKING FLASH
+//http://stackoverflow.com/questions/7713182/copy-to-clipboard-for-all-browsers-using-javascript
+function copyToClipboardCrossbrowser(s) {  
+	alert("called: "+s);         
+        //s = document.getElementById(s).value;               
+
+        if( window.clipboardData && clipboardData.setData )
+        {
+            clipboardData.setData("Text", s);
+        }           
+        else
+        {
+            // You have to sign the code to enable this or allow the action in about:config by changing
+            //user_pref("signed.applets.codebase_principal_support", true);
+            netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+
+            var clip = Components.classes["@mozilla.org/widget/clipboard;1"].createInstance(Components.interfaces.nsIClipboard);
+            if (!clip) return;
+
+            // create a transferable
+
+            var trans = Components.classes["@mozilla.org/widget/transferable;1"].createInstance(Components.interfaces.nsITransferable);
+            if (!trans) return;
+
+            // specify the data we wish to handle. Plaintext in this case.
+            trans.addDataFlavor('text/unicode');
+
+            // To get the data from the transferable we need two new objects
+            var str = new Object();
+            var len = new Object();
+
+            var str = Components.classes["@mozilla.org/supports-string;1"].createInstance(Components.interfaces.nsISupportsString);
+
+            str.data= s;        
+
+            trans.setTransferData("text/unicode",str, str.data.length * 2);
+
+            var clipid=Components.interfaces.nsIClipboard;              
+            if (!clip) return false;
+            clip.setData(trans,null,clipid.kGlobalClipboard);      
+        }
+    }*/
 </script>
 <script type="text/javascript">
+//This is Flattr business
+
 /* <![CDATA[ */
     (function() {
         var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
@@ -73,6 +137,7 @@ function state_update(){
 /* ]]> */</script>
 </head>
 <body>
+<div id="dia_generate" title="Shortener"><h3>Wait a minute!</h3><p>I'm not sure what article to use.</p></div>
 <div id="content">
 <p><a href="http://wki.pe/"><img src="wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
 <div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
@@ -95,7 +160,8 @@ Shorthand alias:<br/>
 </p>
 </div>
 <input id="btn_alias" type="button" name="btn_alias" onClick="showAdvanced();" value="Add Aliasing">
-<input id="btn_submit" type="submit" name="btn_submit" value="Generate">
+<input id="btn_submit" type="button" name="btn_submit" onClick="generateURL();" value="Generate">
+<!--<input id="btn_submit" type="submit" name="btn_submit" value="Generate">-->
 </fieldset>
 </form>
 </p>
