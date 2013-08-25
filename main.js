@@ -55,8 +55,9 @@ function state_update(){
 
 function generateURL(){
 	$('#loading').show();
+	var formdata = $('#frm_generate').serialize(); //IE doesn't like doing it inside post()
 	//replaces the submit action with a jQuery $.post() command, so we can have more control
-	$.post('generate.php',$('#frm_generate').serialize(), function(data){
+	$.post('generate.php',formdata, function(data){
 			//alert(data);
 			$('#dia_generate').html(data);
 			$('#btn_tryit').button();

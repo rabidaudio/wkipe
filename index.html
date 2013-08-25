@@ -1,7 +1,9 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title>wki.pe - A URL shortener for Wikipedia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
   <script type="text/javascript" src="jquery-1.10.1.min.js"></script>
   <script type="text/javascript" src="jquery-ui-1.10.3.custom.min.js"></script>
   <script type="text/javascript" src="jquery.cookie.js"></script>
@@ -10,30 +12,35 @@
 <script type="text/javascript">
 //This is the script that controls the single-page app (page loading)
 $(document).ready(function() {
-	//$('#loading').hide();
+	//#('#myspacer').hide();
 	setpage("main.html");//load main page
-	$( 'a[dest="local"]' ).click(function(e){ //listener for local links
-		var destination = $(this).attr('href');
-		e.preventDefault();
-		setpage(destination);
-	});
 	lang_setup(); //setup language
-	$('#sel_lang').change(lang_change);//listener on language selector
 });
+
+function setListeners(){
+//when page content changes, we need to run these again
+$( 'a[dest="local"]' ).click(function(e){ //listener for local links
+	var destination = $(this).attr('href');
+	e.preventDefault();
+	setpage(destination);
+});
+$('#sel_lang').change(lang_change);//listener on language selector
+$( 'a[dest!="local"]' ).attr("target", "_blank");//TODO not sure if this is working
+}
 
 function setpage(destination){
 	$('#loading').show();
-	$('#inner_page').hide();//"slide", {direction: "up"});
+	$('#inner_page').hide();
 	$.ajax({
 		url: destination, 
 		success: function(data, textStatus, jqXHR){
-			//alert(data);
 			$('#inner_page').html(data);
-		}
+		},
+		async: false
 	});
 	$('#loading').hide();
-	$('#inner_page').show("slide", {direction: "up"});
-	$( 'a[dest!="local"]' ).attr("target", "_blank");//TODO not sure if this is working
+	$('#inner_page').show();
+	setListeners();
 }
 
 function lang_setup(){
@@ -45,6 +52,10 @@ function lang_setup(){
 			success: function(data, textStatus, jqXHR){
 				mylang=data;
 				$.cookie('lang',mylang);
+			},
+			error: function(){//if it doesn't work, default to English
+				mylang="en";
+				$.cookie('lang',"en");
 			}
 		});
 	}
@@ -65,22 +76,6 @@ function lang_setup(){
 function lang_change(){
 	$.cookie('lang',$('#sel_lang').val());
 }
-/*function readCookie(c){
-	var cookies = loadCookies();
-	return cookies[c];
-}
-
-//http://javascript.about.com/library/blrcookie.htm
-function loadCookies() {
-var cr = []; if (document.cookie != '') {
-  var ck = document.cookie.split('; ');
-    for (var i=ck.length - 1; i>= 0; i--) {
-      var cv = ck.split('=');
-      cr[ck[0]]=ck[1];
-    }
-  }
-return cr;
-}*/
 </script>
 <script type="text/javascript">
 //This is Flattr business
@@ -101,7 +96,7 @@ return cr;
 </select>
 </div>
 <div id="content">
-<p><a href="http://wki.pe/"><img src="wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
+<p><a href="main.html" dest="local"><img src="wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
 <div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
 </p>
 <div id="loading"><img src="loading.gif" alt="just a sec..."></div>
