@@ -24,14 +24,14 @@ REAL TODO (above this is really old)
 *Convert all pages to jquery-ui with mediawiki css
 *add legal page
 add contact page
-get autocomplete working for other languages
-implement language selector
+*get autocomplete working for other languages
+*implement language selector
 fix weirdass unicode bugs
 cleanup verbage
 mobile-friendly
 iframe selected article
 start using bootstrap
-make single page app
+*make single page app
 *generate in dialog window
 *select/copy text
 move images to directory
