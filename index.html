@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 function setpage(destination){
 	$('#loading').show();
-	$('#inner_page').hide();//"slide", {direction: "up"});
+	$('#inner_page').hide("slide", {direction: "up"});
 	$.ajax({
 		url: destination, 
 		success: function(data, textStatus, jqXHR){
@@ -29,8 +29,8 @@ function setpage(destination){
 		}
 	});
 	$('#loading').hide();
-	$('#inner_page').show("slide", {direction: "down"});
-	$( 'a[dest != "local"]' ).attr("target", "_blank");
+	$('#inner_page').show("slide", {direction: "up"});
+	$( 'a[dest!="local"]' ).attr("target", "_blank");//TODO not sure if this is working
 }
 </script>
 <script type="text/javascript">
