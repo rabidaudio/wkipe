@@ -18,8 +18,10 @@ beautify
 *get hosting and domain name
 *release Beta!
 
----------------------
-Convert all pages to jquery-ui with mediawiki css
+
+REAL TODO (above this is really old)
+------------------------------------
+*Convert all pages to jquery-ui with mediawiki css
 *add legal page
 add contact page
 get autocomplete working for other languages
@@ -32,6 +34,10 @@ start using bootstrap
 make single page app
 *generate in dialog window
 *select/copy text
+move images to directory
+add js to gitignore
+add all languages with aliasing
+
 
 add sidebar of recently accessed links (neat-o, right!?)
 

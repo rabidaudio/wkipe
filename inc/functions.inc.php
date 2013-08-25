@@ -111,25 +111,23 @@ function base_encode($num){
 	//$language = locale_get_primary_language($locale);
 	$language = getDefaultLanguage();
 	switch ($language){
-		case "cv":
-		case "el":
-		case "es":
 		case "en":
-		case "fi":
-		case "fr":
-		case "gl":
-		case "it":
-		case "ja":
-		case "ko":
-		case "lt":
-		case "hv":
-		case "mk":
-		case "nn":
-		case "no":
-		case "sl":
+		case "nl":
+		case "de":
 		case "sv":
-		case "ta":
+		case "fr":
+		case "it":
+		case "es":
+		case "ru":
+		case "pl":
+		case "ja":
+		case "vi":
+		case "pt":
+		case "war":
+		case "ceb":
 		case "zh":
+		case "uk":
+		case "ca":
 			return $language;
 			break;
 		default:

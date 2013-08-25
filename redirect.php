@@ -11,8 +11,13 @@ if (preg_match('/400.shtml/',$_SERVER['REDIRECT_QUERY_STRING'])) {
 }else{
 	$query = $_SERVER['REDIRECT_QUERY_STRING'];
 }
-$locale = getDefaultLanguage();
-$language = get_lang_code();
+if (!$_COOKIE['lang']){
+	//$locale = getDefaultLanguage();
+	$language = get_lang_code();
+}else{
+	$language = $_COOKIE['lang'];
+}
+
 $ip_addr = $_SERVER['REMOTE_ADDR'];
 
 $querya=explode("|",$query);

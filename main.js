@@ -12,7 +12,7 @@ $(document).ready(function() {
 	$('#txt_url').autocomplete({
 		source: function(request, response){
 			var searchstr=request.term;
-			var lang="en";
+			var lang=$.cookie('lang');
 			var url = "http://"+lang+".wikipedia.org/w/api.php";
 			var qs = {
 				action: 'opensearch',

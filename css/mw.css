@@ -99,3 +99,7 @@ margin-left: .4em;
 div#loading{
 text-align:center;
 }
+
+div#header{
+text-align:right;
+}

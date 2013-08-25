@@ -4,23 +4,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="jquery-1.10.1.min.js"></script>
   <script type="text/javascript" src="jquery-ui-1.10.3.custom.min.js"></script>
+  <script type="text/javascript" src="jquery.cookie.js"></script>
   <link rel="stylesheet" href="css/mw.css" />
   <link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.3.custom.min.css" />
 <script type="text/javascript">
 //This is the script that controls the single-page app (page loading)
 $(document).ready(function() {
 	//$('#loading').hide();
-	setpage("main.html");
-	$( 'a[dest="local"]' ).click(function(e){
+	setpage("main.html");//load main page
+	$( 'a[dest="local"]' ).click(function(e){ //listener for local links
 		var destination = $(this).attr('href');
 		e.preventDefault();
 		setpage(destination);
 	});
+	lang_setup(); //setup language
+	$('#sel_lang').change(lang_change);//listener on language selector
 });
 
 function setpage(destination){
 	$('#loading').show();
-	$('#inner_page').hide("slide", {direction: "up"});
+	$('#inner_page').hide();//"slide", {direction: "up"});
 	$.ajax({
 		url: destination, 
 		success: function(data, textStatus, jqXHR){
@@ -32,6 +35,52 @@ function setpage(destination){
 	$('#inner_page').show("slide", {direction: "up"});
 	$( 'a[dest!="local"]' ).attr("target", "_blank");//TODO not sure if this is working
 }
+
+function lang_setup(){
+	var mylang = $.cookie('lang');
+	//alert(mylang);
+	if (mylang==null){
+		$.ajax({
+			url: "lang.php",
+			success: function(data, textStatus, jqXHR){
+				mylang=data;
+				$.cookie('lang',mylang);
+			}
+		});
+	}
+	//alert(mylang);
+	var langs = ["en", "nl", "de", "sv", "fr", "it", "es", "ru", "pl", "ja",
+		     "vi", "pt", "war", "ceb", "zh", "uk", "ca"];
+	var selected = "";
+	for(var i=0; i<langs.length;i++){
+		if (langs[i]==mylang){
+			selected=" selected";
+		}else{
+			selected="";
+		}
+		$('#sel_lang').append("<option value='"+langs[i]+"'"+selected+">"+langs[i]+"</option>");
+	}
+}
+
+function lang_change(){
+	$.cookie('lang',$('#sel_lang').val());
+}
+/*function readCookie(c){
+	var cookies = loadCookies();
+	return cookies[c];
+}
+
+//http://javascript.about.com/library/blrcookie.htm
+function loadCookies() {
+var cr = []; if (document.cookie != '') {
+  var ck = document.cookie.split('; ');
+    for (var i=ck.length - 1; i>= 0; i--) {
+      var cv = ck.split('=');
+      cr[ck[0]]=ck[1];
+    }
+  }
+return cr;
+}*/
 </script>
 <script type="text/javascript">
 //This is Flattr business
@@ -47,6 +96,10 @@ function setpage(destination){
 /* ]]> */</script>
 </head>
 <body>
+<div id="header">
+<select id="sel_lang" name="sel_lang">
+</select>
+</div>
 <div id="content">
 <p><a href="http://wki.pe/"><img src="wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
 <div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
