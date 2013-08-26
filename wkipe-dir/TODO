@@ -23,7 +23,7 @@ REAL TODO (above this is really old)
 ------------------------------------
 *Convert all pages to jquery-ui with mediawiki css
 *add legal page
-add contact page
+*add contact page
 *get autocomplete working for other languages
 *implement language selector
 fix weirdass unicode bugs
