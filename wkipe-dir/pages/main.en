@@ -1,6 +1,6 @@
-<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="wkipe-dir/js/main.js"></script>
 <div id="dia_generate" title="Shortener"><h3>Wait a minute!</h3><p>I'm not sure what article to use.</p></div>
-<p>Enter the article you want to shorten. If you want to choose your own link text, click the <em>Add Aliasing</em> button. If you need more help, check out the <a href="faq.html" dest="local">frequently asked questions</a>. Have a suggestion? Found a bug? Want to help translate? <a href="contact.html" dest="local">Let me know.</a>
+<p>Enter the article you want to shorten. If you want to choose your own link text, click the <em>Add Aliasing</em> button. If you need more help, check out the <a href="faq" dest="local">frequently asked questions</a>. Have a suggestion? Found a bug? Want to help translate? <a href="contact" dest="local">Let me know.</a>
 </p>
 <p>
 <form id="frm_generate" name="frm_generate" action="generate.php" method="post">

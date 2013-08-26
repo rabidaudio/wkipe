@@ -1,15 +1,15 @@
 <?php
-include('inc/functions.inc.php');
+include('functions.inc.php');
 //print_r($_POST);
 //Array ( [txt_url] => ZXC [txt_alias] => sdfg [btn_submit] => Generate ) 
 //Array ( [hdn_advanced] => 1 [txt_url] => asdf [txt_alias] => asdf [chk_locale] => on [btn_submit] => Generate )
 
 //error checking
 if (!$_POST['txt_url']){
-	die("<p>You must include the destination URL. <a href=\"index.php\">Click here</a> to try again.</p>");
+	die("<p>You must include the destination URL. <a href=\"index\" dest=\"local\">Click here</a> to try again.</p>");
 }
 if ($_POST['hdn_advanced']===1 and !$_POST['txt_alias']){
-	die("<p>You must include an alias, or generate a normal link. <a href=\"index.php\">Click here</a> to try again.</p>");
+	die("<p>You must include an alias, or generate a normal link. <a href=\"index\" dest=\"local\">Click here</a> to try again.</p>");
 }
 /*TODO replace with security token to ensure origin is actually wki.pe
 if (!$_POST['btn_submit']){

@@ -1,5 +1,5 @@
 <?php
-include('inc/functions.inc.php');
+include('functions.inc.php');
 
 #STEP 1: if no (or bad) arguments, redirect to homepage
 #STEP 2: identify and generate correct redirect location

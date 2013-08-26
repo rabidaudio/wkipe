@@ -1,6 +1,6 @@
 <?php
 #language detection, picker, and storer
-include('inc/functions.inc.php');
+include('functions.inc.php');
 
 if (!$_COOKIE['lang']){
 	$lang=get_lang_code();

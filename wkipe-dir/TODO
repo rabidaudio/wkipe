@@ -36,6 +36,7 @@ start using bootstrap
 *select/copy text
 move images to directory
 add js to gitignore
+reorganize file structure
 add all languages with aliasing
 fix IE9 serialize bug (try to serialize manually?) http://bugs.jquery.com/ticket/11594
 

@@ -22,10 +22,10 @@ RewriteRule ^$ /index.html [L]
 RewriteCond %{HTTP_HOST} ^(.*)\.wki\.pe$
 RewriteCond %{HTTP_HOST} !^www\.wki\.pe$
 RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteRule ^(.*) /redirect.php?$1|%1 [L]
+RewriteRule ^(.*) /wkipe-dir/php/redirect.php?$1|%1 [L]
 
 #if www or no subdomain, write as article
 RewriteCond %{HTTP_HOST} ^www\.wki\.pe$ [OR]
 RewriteCond %{HTTP_HOST} ^wki\.pe$
 RewriteCond %{SCRIPT_FILENAME} !-f
-RewriteRule ^(.*) /redirect.php?$1
+RewriteRule ^(.*) /wkipe-dir/php/redirect.php?$1

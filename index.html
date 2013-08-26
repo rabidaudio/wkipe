@@ -4,16 +4,16 @@
 <title>wki.pe - A URL shortener for Wikipedia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <script type="text/javascript" src="jquery-1.10.1.min.js"></script>
-  <script type="text/javascript" src="jquery-ui-1.10.3.custom.min.js"></script>
-  <script type="text/javascript" src="jquery.cookie.js"></script>
-  <link rel="stylesheet" href="css/mw.css" />
-  <link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.3.custom.min.css" />
+  <script type="text/javascript" src="wkipe-dir/js/jquery-1.10.1.min.js"></script>
+  <script type="text/javascript" src="wkipe-dir/js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script type="text/javascript" src="wkipe-dir/js/jquery.cookie.js"></script>
+  <link rel="stylesheet" href="wkipe-dir/css/mw.css" />
+  <link rel="stylesheet" href="wkipe-dir/css/smoothness/jquery-ui-1.10.3.custom.min.css" />
 <script type="text/javascript">
 //This is the script that controls the single-page app (page loading)
 $(document).ready(function() {
 	//#('#myspacer').hide();
-	setpage("main.html");//load main page
+	setpage("main");//load main page
 	lang_setup(); //setup language
 });
 
@@ -32,7 +32,8 @@ function setpage(destination){
 	$('#loading').show();
 	$('#inner_page').hide();
 	$.ajax({
-		url: destination, 
+		url: "wkipe-dir/php/getpage.php", 
+		data: {page: destination, lang: $.cookie('lang')},
 		success: function(data, textStatus, jqXHR){
 			$('#inner_page').html(data);
 		},
@@ -48,7 +49,7 @@ function lang_setup(){
 	//alert(mylang);
 	if (mylang==null){
 		$.ajax({
-			url: "lang.php",
+			url: "wkipe-dir/php/lang.php",
 			success: function(data, textStatus, jqXHR){
 				mylang=data;
 				$.cookie('lang',mylang);
@@ -96,15 +97,15 @@ function lang_change(){
 </select>
 </div>
 <div id="content">
-<p><a href="main.html" dest="local"><img src="wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
+<p><a href="main" dest="local"><img src="wkipe-dir/img/wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
 <div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
 </p>
-<div id="loading"><img src="loading.gif" alt="just a sec..."></div>
+<div id="loading"><img src="wkipe-dir/img/loading.gif" alt="just a sec..."></div>
 <div id="inner_page">
 </div>
 </div>
 <div id="footer">
-<a href="main.html" dest="local">Home</a> | <a href="faq.html" dest="local">FAQ</a> | Contact | <a href="legal.html" dest="local">Legal</a> | 
+<a href="main" dest="local">Home</a> | <a href="faq" dest="local">FAQ</a> | Contact | <a href="legal" dest="local">Legal</a> | 
 <span id='flattr'><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://wki.pe"></a></span>
 </div>
 </body>
