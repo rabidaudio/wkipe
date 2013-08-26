@@ -1,5 +1,6 @@
 <script type="text/javascript" src="wkipe-dir/js/main.js"></script>
 <div id="dia_generate" title="Shortener"><h3>Wait a minute!</h3><p>I'm not sure what article to use.</p></div>
+<div id="dia_iframe" style="text-align:center"><img id="loading_article" src="wkipe-dir/img/loading.gif" alt="just a sec..."><iframe id="ifr_article"></iframe></div>
 <p>Enter the article you want to shorten. If you want to choose your own link text, click the <em>Add Aliasing</em> button. If you need more help, check out the <a href="faq" dest="local">frequently asked questions</a>. Have a suggestion? Found a bug? Want to help translate? <a href="contact" dest="local">Let me know.</a>
 </p>
 <p>
@@ -16,8 +17,9 @@ Custom text:<br/>
 </p>
 </div>
 <p>
-<input id="btn_alias" type="button" name="btn_alias" onClick="showAdvanced();" value="Add Aliasing">
-<input id="btn_submit" type="button" name="btn_submit" onClick="generateURL();" value="Generate">
+<input id="btn_alias" type="button" name="btn_alias" onClick="showAdvanced()" value="Add Aliasing">
+<input id="btn_test" type="button" name="btn_test" onClick="testArticle()" value="Test">
+<input id="btn_submit" type="button" name="btn_submit" onClick="generateURL()" value="Generate">
 <!--<input id="btn_submit" type="submit" name="btn_submit" value="Generate">-->
 </p>
 </fieldset>

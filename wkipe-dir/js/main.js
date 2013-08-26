@@ -1,12 +1,13 @@
 $(document).ready(function() {
 	$( "input[type=submit], input[type=button], button" ).button();
 	$( '#dia_generate' ).dialog({modal: true, autoOpen: false});
+	$( '#dia_iframe' ).dialog({modal: true, autoOpen: false});
 	$( '#sec_alias' ).hide();
 	$( '#hdn_advanced' ).val('0');
 	state_update();
 	$('#txt_url, #txt_alias').keyup(state_update);
 
-	//so we want to grab the user's locale language #TODO add a language selector!
+	//so we want to grab the user's locale language
 	// and then use this guy: http://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=QUERY
 	// to grab the list of articles to reccommend
 	$('#txt_url').autocomplete({
@@ -19,7 +20,6 @@ $(document).ready(function() {
 				format: 'json',
 				search: request.term
 			}
-			//$.getJSON(url+searchstr+"&callback=?", function(data) {
 			$.getJSON(url+"?callback=?", qs, function(data) {
 				response(data[1]);
 			});
@@ -42,19 +42,24 @@ function state_update(){
 		$("#txt_url").autocomplete( "disable" );
 	}
 
+	//if txt_url isn't filled in, disable Test button
+	if($('#txt_url').val().length > 0){
+		$('#btn_test').button( "enable" );
+	}else{
+		$('#btn_test').button( "disable" );
+	}
+
 	//if the fields aren't filled in, disable the submit button
 	if( ($('#txt_url').val().length > 0) && ( $('#hdn_advanced').val()=='0'
 		|| ($('#hdn_advanced').val()=='1' && $('#txt_alias').val().length>0) )){
-		//$('#btn_submit').prop("disabled",false);
 		$('#btn_submit').button( "enable" );
 	}else{
-		//$('#btn_submit').prop("disabled",true);
 		$('#btn_submit').button( "disable" );
 	}	
 }
 
 function generateURL(){
-	$('#loading').show();
+	$('#loading_main').show();
 	var formdata = $('#frm_generate').serialize(); //IE doesn't like doing it inside post()
 	//replaces the submit action with a jQuery $.post() command, so we can have more control
 	$.post('wkipe-dir/php/generate.php',formdata, function(data){
@@ -65,7 +70,29 @@ function generateURL(){
 			$('#dia_generate').dialog("open");
 		}
 	);
-	$('#loading').hide();
+	$('#loading_main').hide();
+}
+
+function testArticle(){
+	var article = "";
+	var urlpat = new RegExp("^https?://[a-z]+\.wikipedia\.org");
+	if( urlpat.test( $('#txt_url').val() ) ){
+		article = $('#txt_url').val();
+	}else{
+		article = "http://"+$.cookie('lang')+".wikipedia.org/wiki/"+$('#txt_url').val().replace(/ /g, "_");
+	}
+	$('#ifr_article').hide();
+	$('#ifr_article').attr('src', article);
+	$('#loading_article').show();
+	var dwidth = .80*$(window).width();
+	$('#dia_iframe').dialog({width: dwidth });
+	dwidth = .9*dwidth;
+	$('#ifr_article').attr('width', dwidth);
+	$('#dia_iframe').dialog("open");
+	$('#ifr_article').load( function (){
+		$('#loading_article').hide();
+		$('#ifr_article').show();
+	});
 }
 
 function clipit(){

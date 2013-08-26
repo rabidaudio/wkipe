@@ -12,7 +12,6 @@
 <script type="text/javascript">
 //This is the script that controls the single-page app (page loading)
 $(document).ready(function() {
-	//#('#myspacer').hide();
 	setpage("main");//load main page
 	lang_setup(); //setup language
 });
@@ -29,7 +28,7 @@ $( 'a[dest!="local"]' ).attr("target", "_blank");//TODO not sure if this is work
 }
 
 function setpage(destination){
-	$('#loading').show();
+	$('#loading_main').show();
 	$('#inner_page').hide();
 	$.ajax({
 		url: "wkipe-dir/php/getpage.php", 
@@ -39,7 +38,7 @@ function setpage(destination){
 		},
 		async: false
 	});
-	$('#loading').hide();
+	$('#loading_main').hide();
 	$('#inner_page').show();
 	setListeners();
 }
@@ -100,7 +99,7 @@ function lang_change(){
 <p><a href="main" dest="local"><img src="wkipe-dir/img/wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
 <div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
 </p>
-<div id="loading"><img src="wkipe-dir/img/loading.gif" alt="just a sec..."></div>
+<div id="loading_main" class="loading"><img src="wkipe-dir/img/loading.gif" alt="just a sec..."></div>
 <div id="inner_page">
 </div>
 </div>
