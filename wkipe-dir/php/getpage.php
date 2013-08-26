@@ -8,5 +8,10 @@ if (!$_GET['lang']){
 }else{
 	$lang=$_GET['lang'];
 }
-
-@readfile('../pages/'.$page.".".$lang);
+$file='../pages/'.$page.".";
+if (!file_exists($file.$lang)){
+	@readfile($file."en");
+}else{
+	@readfile($file.$lang);
+}
+?>
