@@ -37,7 +37,7 @@ start using bootstrap
 move images to directory
 add js to gitignore
 add all languages with aliasing
-fix IE9 serialize bug (try to serialize manually?)
+fix IE9 serialize bug (try to serialize manually?) http://bugs.jquery.com/ticket/11594
 
 
 add sidebar of recently accessed links (neat-o, right!?)

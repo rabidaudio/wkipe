@@ -44,6 +44,8 @@ function generate_alias($art, $alias, $locale="NULL") {
 	//increment this, convert it to a base-62 (upper,lower,nums)
 	//add this info to database
 	//then return wki.pe url
+
+	$alias=preg_replace('/ /','_', $alias);
 	
 	$art=preg_replace('/^https?:\/\//','',$art);
 	$art=preg_replace('/.*?wikipedia.org\/wiki\//','',$art);
