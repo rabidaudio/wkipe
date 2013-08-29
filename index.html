@@ -51,6 +51,7 @@ function get_top_articles(){
       var datajson = $.parseJSON(data);
       var normalarticles = "<li><em>Top Normal Articles</em></li>";
       var customarticles = "<li><em>Top Custom Articles</em></li>";
+      var recentarticles = "<li><em>Recently Accessed</em></li>";
       var d = datajson[0];
       $('#span_articlecount').html('<h3>'+d+' redirects and counting!</h3>');
       d = datajson[1];
@@ -62,8 +63,13 @@ function get_top_articles(){
       for (var j=0;j<d.length;j++){
         customarticles=customarticles+'<li><a href="http://'+d[j]+'">'+d[j].replace(host,"")+'</a></li>';
       }
+      d = datajson[3];
+      for (var k=0;k<d.length;k++){
+        recentarticles=recentarticles+'<li><a href="http://'+d[k]+'">'+d[k].replace(host,"")+'</a></li>';
+      }
       $('#ul_topnormal').html(normalarticles);
       $('#ul_topcustom').html(customarticles);
+      $('#ul_recent').html(recentarticles);
     }
   });
 }
@@ -131,6 +137,7 @@ function lang_change(){
     <p><span id="span_articlecount"></span></p>
     <p><ul class="sidebar" id="ul_topnormal"></ul></p>
     <p><ul class="sidebar" id="ul_topcustom"></ul></p>
+    <p><ul class="sidebar" id="ul_recent"></ul></p>
   </div>
   <div id="footer">
     <a href="main" dest="local">Home</a> | <a href="faq" dest="local">FAQ</a> | <a href="contact" dest="local">Contact</a> | <a href="legal" dest="local">Legal</a> | 

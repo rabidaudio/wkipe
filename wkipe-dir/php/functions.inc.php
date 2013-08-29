@@ -113,6 +113,22 @@ function top_custom(){
 	return $top_articles;
 }
 
+function recent_redirects(){
+	$results=mysql_query("select * from (SELECT article as url, null as id, timestamp FROM normal_log union select string as url, custom_url.custom_id as id, custom_log.timestamp as timestamp from custom_log left join custom_url on custom_log.custom_url=custom_url.custom_url_id ) as a order by `timestamp` DESC LIMIT 0,5;");
+	if (!$results){
+		die("could not execute: ".mysql_error());
+	}
+	$recent=array();
+	while ($row=mysql_fetch_array($results)){
+		if ($row['id']===null){
+			$recent[] = 'wki.pe/'.$row['url'];
+		}else{
+			$recent[] = base_encode($row['id']).'.wki.pe/'.$row['url'];
+		}
+	}
+	return $recent;
+}
+
 
 
 
