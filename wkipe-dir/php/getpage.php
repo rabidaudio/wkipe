@@ -4,7 +4,7 @@ if (!$_GET['page']){
 }
 $page = $_GET['page'];
 if (!$_GET['lang']){
-	$lang=http_get("lang.php");
+	$lang=http_get("lang.php");//TODO this aint right
 }else{
 	$lang=$_GET['lang'];
 }
