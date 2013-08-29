@@ -12,69 +12,69 @@
 <script type="text/javascript">
 //This is the script that controls the single-page app (page loading)
 $(document).ready(function() {
-	setpage("main");//load main page
-	lang_setup(); //setup language
+  setpage("main");//load main page
+  lang_setup(); //setup language
 });
 
 function setListeners(){
 //when page content changes, we need to run these again
 $( 'a[dest="local"]' ).click(function(e){ //listener for local links
-	var destination = $(this).attr('href');
-	e.preventDefault();
-	setpage(destination);
+  var destination = $(this).attr('href');
+  e.preventDefault();
+  setpage(destination);
 });
 $('#sel_lang').change(lang_change);//listener on language selector
 $( 'a[dest!="local"]' ).attr("target", "_blank");//TODO not sure if this is working
 }
 
 function setpage(destination){
-	$('#loading_main').show();
-	$('#inner_page').hide();
-	$.ajax({
-		url: "wkipe-dir/php/getpage.php", 
-		data: {page: destination, lang: $.cookie('lang')},
-		success: function(data, textStatus, jqXHR){
-			$('#inner_page').html(data);
-		},
-		async: false
-	});
-	$('#loading_main').hide();
-	$('#inner_page').show();
-	setListeners();
+  $('#loading_main').show();
+  $('#inner_page').hide();
+  $.ajax({
+    url: "wkipe-dir/php/getpage.php", 
+    data: {page: destination, lang: $.cookie('lang')},
+    success: function(data, textStatus, jqXHR){
+      $('#inner_page').html(data);
+    },
+    async: false
+  });
+  $('#loading_main').hide();
+  $('#inner_page').show();
+  setListeners();
 }
 
 function lang_setup(){
-	var mylang = $.cookie('lang');
-	//alert(mylang);
-	if (mylang==null){
-		$.ajax({
-			url: "wkipe-dir/php/lang.php",
-			success: function(data, textStatus, jqXHR){
-				mylang=data;
-				$.cookie('lang',mylang);
-			},
-			error: function(){//if it doesn't work, default to English
-				mylang="en";
-				$.cookie('lang',"en");
-			}
-		});
-	}
-	//alert(mylang);
-	var langs = ["en", "nl", "de", "sv", "fr", "it", "es", "ru", "pl", "ja",
-		     "vi", "pt", "war", "ceb", "zh", "uk", "ca"];
-	var selected = "";
-	for(var i=0; i<langs.length;i++){
-		if (langs[i]==mylang){
-			selected=" selected";
-		}else{
-			selected="";
-		}
-		$('#sel_lang').append("<option value='"+langs[i]+"'"+selected+">"+langs[i]+"</option>");
-	}
+  var mylang = $.cookie('lang');
+  //alert(mylang);
+  if (mylang==null){
+    $.ajax({
+      url: "wkipe-dir/php/lang.php",
+      success: function(data, textStatus, jqXHR){
+        mylang=data;
+        $.cookie('lang',mylang);
+      },
+      error: function(){//if it doesn't work, default to English
+        mylang="en";
+        $.cookie('lang',"en");
+      }
+    });
+  }
+  //alert(mylang);
+  var langs = ["en", "nl", "de", "sv", "fr", "it", "es", "ru", "pl", "ja",
+         "vi", "pt", "war", "ceb", "zh", "uk", "ca"];
+  var selected = "";
+  for(var i=0; i<langs.length;i++){
+    if (langs[i]==mylang){
+      selected=" selected";
+    }else{
+      selected="";
+    }
+    $('#sel_lang').append("<option value='"+langs[i]+"'"+selected+">"+langs[i]+"</option>");
+  }
 }
 
 function lang_change(){
-	$.cookie('lang',$('#sel_lang').val());
+  $.cookie('lang',$('#sel_lang').val());
 }
 </script>
 <script type="text/javascript">
@@ -91,21 +91,20 @@ function lang_change(){
 /* ]]> */</script>
 </head>
 <body>
-<div id="header">
-<select id="sel_lang" name="sel_lang">
-</select>
-</div>
-<div id="content">
-<p><a href="main" dest="local"><img src="wkipe-dir/img/wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
-<div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
-</p>
-<div id="loading_main" class="loading"><img src="wkipe-dir/img/loading.gif" alt="just a sec..."></div>
-<div id="inner_page">
-</div>
-</div>
-<div id="footer">
-<a href="main" dest="local">Home</a> | <a href="faq" dest="local">FAQ</a> | <a href="contact" dest="local">Contact</a> | <a href="legal" dest="local">Legal</a> | 
-<span id='flattr'><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://wki.pe"></a></span>
+  <div id="header"">
+    <select id="sel_lang" name="sel_lang">
+    </select>
+  </div>
+  <div id="content">
+    <p><a href="main" dest="local"><img src="wkipe-dir/img/wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
+    <div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
+    </p>
+    <div id="loading_main" class="loading"><img src="wkipe-dir/img/loading.gif" alt="just a sec..."></div>
+    <div id="inner_page"></div>
+  </div>
+  <div id="footer">
+    <a href="main" dest="local">Home</a> | <a href="faq" dest="local">FAQ</a> | <a href="contact" dest="local">Contact</a> | <a href="legal" dest="local">Legal</a>
+    <span id='flattr'> | <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://wki.pe"></a></span>
 </div>
 </body>
 </html>

@@ -113,3 +113,23 @@ min-height:2em;
 a, img {
     border:none;
 }
+
+/*MOBILE FIXES*/
+@media screen and (max-width: 600px){
+div#content{
+margin-left:5em;
+width:110%;
+}
+div#header{
+width:130%;
+}
+.ui-widget{
+font-size:.9em !important;
+}
+div#footer{
+font-size:90%;
+}
+span#flattr{
+display:none;
+}
+}

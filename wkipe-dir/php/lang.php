@@ -2,13 +2,7 @@
 #language detection, picker, and storer
 include('functions.inc.php');
 
-if (!$_COOKIE['lang']){
-	$lang=get_lang_code();
-	setcookie('lang',$lang,time()+60*60*24*14, "wki.pe");
-	echo $lang;
-}else{
-	echo $_COOKIE['lang'];
-}
+echo handle_lang();
 
 #Now we definately have the language.
 /*

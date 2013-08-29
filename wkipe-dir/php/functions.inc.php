@@ -105,6 +105,15 @@ function base_encode($num){
 	return $code;
 }
 
+function handle_lang(){
+	if (!$_COOKIE['lang']){
+		$lang=get_lang_code();
+		setcookie('lang',$lang,time()+60*60*24*14, "wki.pe");
+	}else{
+		$lang=$_COOKIE['lang'];
+	}
+	return $lang;
+}
 
  //returns the language code from the client if there is a wikipeida server
  //in that language. otherwise returns 'en'

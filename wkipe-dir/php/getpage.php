@@ -1,10 +1,11 @@
 <?php
+include('functions.inc.php');
 if (!$_GET['page']){
 	die();
 }
 $page = $_GET['page'];
 if (!$_GET['lang']){
-	$lang=http_get("lang.php");//TODO this aint right
+	$lang=handle_lang();
 }else{
 	$lang=$_GET['lang'];
 }

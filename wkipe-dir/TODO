@@ -30,7 +30,7 @@ fix weirdass unicode bugs
 cleanup verbage
 mobile-friendly
 *iframe selected article
-start using bootstrap
+--start using bootstrap (not good for this project) :/
 *make single page app
 *generate in dialog window
 *select/copy text
