@@ -14,6 +14,7 @@
 $(document).ready(function() {
   setpage("main");//load main page
   lang_setup(); //setup language
+  get_top_articles();
 });
 
 function setListeners(){
@@ -41,6 +42,30 @@ function setpage(destination){
   $('#loading_main').hide();
   $('#inner_page').show();
   setListeners();
+}
+
+function get_top_articles(){
+  $.ajax({
+    url: "wkipe-dir/php/toplinks.php", 
+    success: function(data, textStatus, jqXHR){
+      var datajson = $.parseJSON(data);
+      var normalarticles = "<li><em>Top Normal Articles</em></li>";
+      var customarticles = "<li><em>Top Custom Articles</em></li>";
+      var d = datajson[0];
+      $('#span_articlecount').html('<h3>'+d+' redirects and counting!</h3>');
+      d = datajson[1];
+      var host = new RegExp("[a-z0-9]?\.?wki\.pe/");
+      for (var i=0;i<d.length;i++){
+        normalarticles=normalarticles+'<li><a href="http://'+d[i]+'">'+d[i].replace(host,"")+'</a></li>';
+      }
+      d = datajson[2];
+      for (var j=0;j<d.length;j++){
+        customarticles=customarticles+'<li><a href="http://'+d[j]+'">'+d[j].replace(host,"")+'</a></li>';
+      }
+      $('#ul_topnormal').html(normalarticles);
+      $('#ul_topcustom').html(customarticles);
+    }
+  });
 }
 
 function lang_setup(){
@@ -102,9 +127,14 @@ function lang_change(){
     <div id="loading_main" class="loading"><img src="wkipe-dir/img/loading.gif" alt="just a sec..."></div>
     <div id="inner_page"></div>
   </div>
+  <div id="mw-panel">
+    <p><span id="span_articlecount"></span></p>
+    <p><ul class="sidebar" id="ul_topnormal"></ul></p>
+    <p><ul class="sidebar" id="ul_topcustom"></ul></p>
+  </div>
   <div id="footer">
-    <a href="main" dest="local">Home</a> | <a href="faq" dest="local">FAQ</a> | <a href="contact" dest="local">Contact</a> | <a href="legal" dest="local">Legal</a>
-    <span id='flattr'> | <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://wki.pe"></a></span>
+    <a href="main" dest="local">Home</a> | <a href="faq" dest="local">FAQ</a> | <a href="contact" dest="local">Contact</a> | <a href="legal" dest="local">Legal</a> | 
+    <span id='flattr'><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://wki.pe"></a></span>
 </div>
 </body>
 </html>

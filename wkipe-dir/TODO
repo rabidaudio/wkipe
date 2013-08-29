@@ -27,8 +27,8 @@ REAL TODO (above this is really old)
 *get autocomplete working for other languages
 *implement language selector
 fix weirdass unicode bugs
-cleanup verbage
-mobile-friendly
+*cleanup verbage
+*mobile-friendly
 *iframe selected article
 --start using bootstrap (not good for this project) :/
 *make single page app
@@ -40,6 +40,6 @@ add all languages with aliasing
 fix IE9 serialize bug (try to serialize manually?) http://bugs.jquery.com/ticket/11594
 
 
-add sidebar of recently accessed links (neat-o, right!?)
+*add sidebar of recently accessed links (neat-o, right!?)
 
 SPREAD THE WORD

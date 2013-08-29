@@ -75,6 +75,45 @@ function get_alias_count($alias){
 }
 
 
+function total_redirects(){
+	$results=mysql_query("select sum(b) as total_redirects from
+(select count(*) as b from custom_log union select count(*) as b from normal_log) as a;");
+	if (!$results){
+		die("could not execute: ".mysql_error());
+	}
+	$result=mysql_fetch_array($results);
+	return $result['total_redirects'];
+}
+
+function top_normal(){
+	$results=mysql_query("select article, count(*) from normal_log WHERE article is not null group by article order by count(*) DESC LIMIT 0,5;");
+	if (!$results){
+		die("could not execute: ".mysql_error());
+	}
+	$top_articles=array();
+	while ($row=mysql_fetch_array($results)){
+		//print_r($row);
+		$top_articles[] = 'wki.pe/'.$row['article'];
+		//echo "<br/>";
+	}
+	return $top_articles;
+}
+
+function top_custom(){
+	$results=mysql_query("select string, custom_id, count(*) from custom_log left join custom_url on custom_log.custom_url=custom_url.custom_url_id WHERE string is not null and custom_id is not null group by custom_url.article order by count(*) DESC LIMIT 0,5;");
+	if (!$results){
+		die("could not execute: ".mysql_error());
+	}
+	$top_articles=array();
+	while ($row=mysql_fetch_array($results)){
+		//print_r($row);
+		$top_articles[] = base_encode($row['custom_id']).'.wki.pe/'.$row['string'];
+		//echo "<br/>";
+	}
+	return $top_articles;
+}
+
+
 
 
 #these aren't perfect, but they will do for now. TODO make better encode/decode algorithms
