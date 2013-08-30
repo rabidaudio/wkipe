@@ -15,16 +15,17 @@ if ($_POST['hdn_advanced']===1 and !$_POST['txt_alias']){
 if (!$_POST['btn_submit']){
 	die("<p>You need to use <a href=\"index.php\">this page</a> to generate your shortened URLs.</p>");
 }*/
+$txt_url=strip_tags($_POST['txt_url']); //PROTECT AGAINST XSS
 
 if ($_POST['hdn_advanced']==='1'){
 	if ($_POST['chk_locale']==="on"){
 		$locale=get_lang_code();
-		$out=generate_alias($_POST['txt_url'], $_POST['txt_alias'], $locale);
+		$out=generate_alias($txt_url, $_POST['txt_alias'], $locale);
 	}else{
-		$out=generate_alias($_POST['txt_url'], $_POST['txt_alias']);
+		$out=generate_alias($txt_url, $_POST['txt_alias']);
 	}
 }else{
-	$out=generate_normal($_POST['txt_url']);
+	$out=generate_normal($txt_url);
 }
 //echo utf8_decode(rawurldecode($out))."<br>";
 echo "Shortened URL generated successfully!<h3><span id='txt_short'>".$out.'<span></h3><a id="btn_tryit" target="_blank" href=\'http://'.str_replace('%2F','/',rawurlencode($out)).'\'>Try it out!</a>';

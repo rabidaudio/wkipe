@@ -45,6 +45,7 @@ if ($custom_id==NULL){
 	custom_log($results['custom_url_id'], $language, $ip_addr);
 	$article_clean=$article;
 }
+$article_clean=strip_tags($article_clean); //XSS attack protection. this should have been done before the database, but just to be sure...
 $redirect = "http://$language.wikipedia.org/wiki/Special:Search/$article_clean";
 #echo "<br>in conclusion, we think $redirect is the right place to go. $article_clean";
 ?>

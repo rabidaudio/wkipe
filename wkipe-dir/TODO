@@ -38,7 +38,7 @@ fix weirdass unicode bugs
 *reorganize file structure
 add all languages with aliasing
 fix IE9 serialize bug (try to serialize manually?) http://bugs.jquery.com/ticket/11594
-
+protect against CSRF (and add API key feature)
 
 *add sidebar of recently accessed links (neat-o, right!?)
 
