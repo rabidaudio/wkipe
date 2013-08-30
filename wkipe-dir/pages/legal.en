@@ -6,6 +6,10 @@ This site utilizes CSS from <a href="http://mediawiki.org">MediaWiki</a>, which 
 
 <p>It also uses a few functions which are Copyright <a href="http://www.dyeager.org/">Darrin Yeager</a> which is licenced under the BSD licence. It was obtained from <a href="http://www.dyeager.org/blog/2008/10/getting-browser-default-language-php.html">this site</a>.</p>
 
+<p>The CSS for the &gt;pre&lt; tags are from <a href="http://www.mohdshakir.net/2007/12/26/css-for-code-block">Mohd Shakir</a>.</p>
+
+<p>The Javascript for highlighting text comes from <a href="http://jasonedelman.com">Jason Delman</a>, as posted <a href="http://stackoverflow.com/questions/985272/jquery-selecting-text-in-an-element-akin-to-highlighting-with-your-mouse">here</a>.</p>
+
 <p>The rest of the code is Copyright Charles Knight. The source code is available on <a href="http://github.com/rabidaudio/wkipe">GitHub</a>. It is licenced under <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>.</p>
 
 <p><h2>Privacy</h2>

@@ -60,8 +60,22 @@ function state_update(){
 
 function generateURL(){
 	$('#loading_main').show();
-	var formdata = $('#frm_generate').serialize(); //IE doesn't like doing it inside post()
-	//replaces the submit action with a jQuery $.post() command, so we can have more control
+	//alert( $('#frm_generate').serialize() );
+	//In order to make generate.php a lot more API friendly, and fix a bug with IE9 and serialize(),
+	//	I'm serializing by hand instead
+	var formdata = {};
+	formdata.article = $('#txt_url').val();
+	formdata.api=false;
+	formdata.alias=$('#txt_alias').val();
+	if ($('#chk_locale').prop('checked')){
+		formdata.lang=$.cookie('lang');
+	}
+	if ($('#hdn_advanced').val()=='1'){
+		formdata.aliased=true;
+	}else{
+		formdata.aliased=false;
+	}
+	//alert(JSON.stringify(formdata));
 	$.post('wkipe-dir/php/generate.php',formdata, function(data){
 			//alert(data);
 			$('#dia_generate').html(data);
@@ -81,7 +95,7 @@ function testArticle(){
 	}else{
 		article = "http://"+$.cookie('lang')+".wikipedia.org/wiki/"+$('#txt_url').val().replace(/ /g, "_");
 	}
-	$('#ifr_article').hide();
+	//$('#ifr_article').hide();
 	$('#ifr_article').attr('src', article);
 	$('#loading_article').show();
 	var dwidth = .80*$(window).width();
@@ -91,7 +105,7 @@ function testArticle(){
 	$('#dia_iframe').dialog("open");
 	$('#ifr_article').load( function (){
 		$('#loading_article').hide();
-		$('#ifr_article').show();
+		//$('#ifr_article').show();
 	});
 }
 

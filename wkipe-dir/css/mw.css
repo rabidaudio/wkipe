@@ -98,7 +98,26 @@ min-height:2em;
 }
 
 a, img {
-    border:none;
+border:none;
+}
+
+tt {
+font-family:monospace;
+}
+
+div.question {
+padding-top:.5em;
+}
+
+/* http://www.mohdshakir.net/2007/12/26/css-for-code-block */
+pre {
+border:1px dashed #E1E1E1;
+color:#333344;
+background:#FAFAFA;
+font-family:monospace;
+overflow:auto;
+font-size:11px;
+padding:0.5em;
 }
 
 /*SIDEBAR*/
