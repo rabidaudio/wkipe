@@ -3,7 +3,8 @@ wkipe
 
 URL shortener for Wikipedia, available at http://wki.pe
 
-Licence : GPLv3 [http://www.gnu.org/licenses/gpl-3.0.html]
+Licence : [GPLv3][http://www.gnu.org/licenses/gpl-3.0.html]
+See legal.en for more information.
 
 NOTICE
 ======

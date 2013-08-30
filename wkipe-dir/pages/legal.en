@@ -4,13 +4,9 @@ This service is offered in the hope that it will be useful, but without any warr
 <p><h2>Licences</h2>
 This site utilizes CSS from <a href="http://mediawiki.org">MediaWiki</a>, which is licenced under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public Licence v2</a>.</p>
 
-<p>It also uses a few functions which are Copyright <a href="http://www.dyeager.org/">Darrin Yeager</a> which is licenced under the BSD licence. It was obtained from <a href="http://www.dyeager.org/blog/2008/10/getting-browser-default-language-php.html">this site</a>.</p>
+<p>It also uses a few functions which are copyright <a href="http://www.dyeager.org/">Darrin Yeager</a> which is licenced under the BSD licence and were obtained from <a href="http://www.dyeager.org/blog/2008/10/getting-browser-default-language-php.html">this site</a>. The CSS for the <tt>&lt;pre&gt;</tt> tags are from <a href="http://www.mohdshakir.net/2007/12/26/css-for-code-block">Mohd Shakir</a>. The Javascript for highlighting text comes from <a href="http://jasonedelman.com">Jason Delman</a>, as posted <a href="http://stackoverflow.com/questions/985272/jquery-selecting-text-in-an-element-akin-to-highlighting-with-your-mouse">here</a>.</p>
 
-<p>The CSS for the &gt;pre&lt; tags are from <a href="http://www.mohdshakir.net/2007/12/26/css-for-code-block">Mohd Shakir</a>.</p>
-
-<p>The Javascript for highlighting text comes from <a href="http://jasonedelman.com">Jason Delman</a>, as posted <a href="http://stackoverflow.com/questions/985272/jquery-selecting-text-in-an-element-akin-to-highlighting-with-your-mouse">here</a>.</p>
-
-<p>The rest of the code is Copyright Charles Knight. The source code is available on <a href="http://github.com/rabidaudio/wkipe">GitHub</a>. It is licenced under <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>.</p>
+<p>The rest of the code is copyright Charles Knight. The source code is available on <a href="http://github.com/rabidaudio/wkipe">GitHub</a>. It is licenced under the <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>.</p>
 
 <p><h2>Privacy</h2>
 This site may collect standard information related to the HTTP connection, such as your IP address, language, and browser information. This is standard data collected by all sites and is considered anonymous; however, in some cases it may be enough information to uniquely identify a user. See here: <a href="https://www.eff.org/deeplinks/2010/01/tracking-by-user-agent">https://www.eff.org/deeplinks/2010/01/tracking-by-user-agent</a></p>
