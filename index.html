@@ -4,6 +4,7 @@
 <title>wki.pe - A URL shortener for Wikipedia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
+  <meta name="Description" content="A URL shortener for Wikipedia articles">
   <script type="text/javascript" src="wkipe-dir/js/jquery-1.10.1.min.js"></script>
   <script type="text/javascript" src="wkipe-dir/js/jquery-ui-1.10.3.custom.min.js"></script>
   <script type="text/javascript" src="wkipe-dir/js/jquery.cookie.js"></script>
@@ -123,25 +124,25 @@ function lang_change(){
 /* ]]> */</script>
 </head>
 <body>
-  <div id="header"">
+  <div id="header" itemscope itemtype="http://schema.org/WPHeader">
     <select id="sel_lang" name="sel_lang">
     </select>
   </div>
   <div id="content">
-    <p><a  href='#' dest="main" type="local"><img src="wkipe-dir/img/wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
+    <p><a  href='wkipe-dir/php/getpage.php?page=main' dest="main" type="local"><img src="wkipe-dir/img/wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
     <div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
     </p>
     <div id="loading_main" class="loading"><img src="wkipe-dir/img/loading.gif" alt="just a sec..."></div>
     <div id="inner_page"></div>
   </div>
-  <div id="mw-panel">
+  <div id="mw-panel" itemscope itemtype="http://schema.org/WPSideBar">
     <p><span id="span_articlecount"></span></p>
     <p><ul class="sidebar" id="ul_topnormal"></ul></p>
     <p><ul class="sidebar" id="ul_topcustom"></ul></p>
     <p><ul class="sidebar" id="ul_recent"></ul></p>
   </div>
-  <div id="footer">
-    <a href='#' dest="main" type="local">Home</a> | <a href='#' dest="faq" type="local">FAQ</a> | <a href='#' dest="contact" type="local">Contact</a> | <a href='#' dest="legal" type="local">Legal</a> | 
+  <div id="footer" itemscope itemtype="http://schema.org/WPFooter">
+    <a href='wkipe-dir/php/getpage.php?page=main' dest="main" type="local">Home</a> | <a href='wkipe-dir/php/getpage.php?page=faq' dest="faq" type="local">FAQ</a> | <a href='wkipe-dir/php/getpage.php?page=contact' dest="contact" type="local">Contact</a> | <a href='wkipe-dir/php/getpage.php?page=legal' dest="legal" type="local">Legal</a> | 
     <span id='flattr'><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://wki.pe"></a></span>
 </div>
 </body>

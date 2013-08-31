@@ -1,0 +1,7 @@
+UserAgent: *
+Allow: /wkipe-dir/php/api.php
+Allow: /wkipe-dir/php/generate.php
+Allow: /wkipe-dir/php/getpage.php
+Allow: /wkipe-dir/php/redirect.php
+Disallow: /wkipe-dir/
+Disallow: /cgi-bin/
