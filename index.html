@@ -19,16 +19,17 @@ $(document).ready(function() {
 
 function setListeners(){
 //when page content changes, we need to run these again
-$( 'a[dest="local"]' ).click(function(e){ //listener for local links
-  var destination = $(this).attr('href');
+$( 'a[type="local"]' ).off('click').on('click', function(e){ //listener for local links
+  var destination = $(this).attr('dest');
   e.preventDefault();
   setpage(destination);
 });
 $('#sel_lang').change(lang_change);//listener on language selector
-$( 'a[dest!="local"]' ).attr("target", "_blank");//TODO not sure if this is working
+$( 'a[type!="local"]' ).attr("target", "_blank");//TODO not sure if this is working
 }
 
 function setpage(destination){
+  console.log('setpage called');
   $('#loading_main').show();
   $('#inner_page').hide();
   $.ajax({
@@ -127,7 +128,7 @@ function lang_change(){
     </select>
   </div>
   <div id="content">
-    <p><a href="main" dest="local"><img src="wkipe-dir/img/wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
+    <p><a  href='#' dest="main" type="local"><img src="wkipe-dir/img/wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
     <div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
     </p>
     <div id="loading_main" class="loading"><img src="wkipe-dir/img/loading.gif" alt="just a sec..."></div>
@@ -140,7 +141,7 @@ function lang_change(){
     <p><ul class="sidebar" id="ul_recent"></ul></p>
   </div>
   <div id="footer">
-    <a href="main" dest="local">Home</a> | <a href="faq" dest="local">FAQ</a> | <a href="contact" dest="local">Contact</a> | <a href="legal" dest="local">Legal</a> | 
+    <a href='#' dest="main" type="local">Home</a> | <a href='#' dest="faq" type="local">FAQ</a> | <a href='#' dest="contact" type="local">Contact</a> | <a href='#' dest="legal" type="local">Legal</a> | 
     <span id='flattr'><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://wki.pe"></a></span>
 </div>
 </body>
