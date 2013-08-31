@@ -13,24 +13,38 @@
 <script type="text/javascript">
 //This is the script that controls the single-page app (page loading)
 $(document).ready(function() {
-  setpage("main");//load main page
+  hash_handle(); //load main page
+  //main listeners:
+  $(window).bind('hashchange', hash_handle );//use hash_handle function when hash changes
+  $('#sel_lang').change(lang_change);//listener on language selector
   lang_setup(); //setup language
   get_top_articles();
 });
 
 function setListeners(){
-//when page content changes, we need to run these again
-$( 'a[type="local"]' ).off('click').on('click', function(e){ //listener for local links
-  var destination = $(this).attr('dest');
-  e.preventDefault();
-  setpage(destination);
-});
-$('#sel_lang').change(lang_change);//listener on language selector
-$( 'a[type!="local"]' ).attr("target", "_blank");//TODO not sure if this is working
+  //when page content changes, we need to run these again
+  $( 'a[type="local"]' ).off('click').on('click', function(e){ //listener for local links
+    var destination = $(this).attr('dest');
+    e.preventDefault();
+    //setpage(destination);
+    window.location.hash="#"+destination;
+  });
+  $( 'a[type!="local"]' ).attr("target", "_blank");
+
+}
+
+function hash_handle(){
+  var h = new RegExp("^#");
+  var page = window.location.hash.replace(h,"");
+  alert(page);
+  if (page==""){
+    setpage("main");
+  }else{
+    setpage(page);
+  }
 }
 
 function setpage(destination){
-  console.log('setpage called');
   $('#loading_main').show();
   $('#inner_page').hide();
   $.ajax({
