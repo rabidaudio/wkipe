@@ -6,7 +6,7 @@ include('functions.inc.php');
 //	https://developers.google.com/webmasters/ajax-crawling/docs/getting-started
 if (preg_match("/^_escaped_fragment_\=/", $_SERVER['QUERY_STRING'])){
 	//echo $_SERVER['QUERY_STRING']."<-->";
-	$page = preg_replace("/^_escaped_fragment_\=/", "", $_SERVER['QUERY_STRING']);
+	$page = preg_replace("/^_escaped_fragment_\=\//", "", $_SERVER['QUERY_STRING']);
 	$index = file_get_contents('../../index.html');
 	$lang = handle_lang();
 	//echo $page;
