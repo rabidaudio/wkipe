@@ -18,6 +18,10 @@ RewriteRule ^/?$ "http\:\/\/blog\.rabidaudio\.com\/" [R=301,L]
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteRule ^$ /index.html [L]
 
+#For AJAX-friendly web crawlers
+RewriteCond %{QUERY_STRING} ^_escaped_fragment_
+RewriteRule ^.* wkipe-dir/php/getpage.php [L]
+
 #if subdomain is neither blank nor www, write as c|article
 RewriteCond %{HTTP_HOST} ^(.*)\.wki\.pe$
 RewriteCond %{HTTP_HOST} !^www\.wki\.pe$

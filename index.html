@@ -23,18 +23,12 @@ $(document).ready(function() {
 
 function setListeners(){
   //when page content changes, we need to run these again
-/*  $( 'a[type="local"]' ).off('click').on('click', function(e){ //listener for local links
-    var destination = $(this).attr('dest');
-    e.preventDefault();
-    //setpage(destination);
-    window.location.hash="#"+destination;
-  });*/
   $( 'a[type!="local"]' ).attr("target", "_blank");
 
 }
 
 function hash_handle(){
-  var h = new RegExp("^#");
+  var h = new RegExp("^#!");
   var page = window.location.hash.replace(h,"");
   if (page==""){
     setpage("main");
@@ -142,7 +136,7 @@ function lang_change(){
     </select>
   </div>
   <div id="content">
-    <p><a  href='#' type="local"><img src="wkipe-dir/img/wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
+    <p><a  href='#!' type="local"><img src="wkipe-dir/img/wkipe-logo.png" alt="Wki.pe" style="width:250px"></a>
     <div id="subtitle"><em>A URL shortener for Wikipedia articles</em></div>
     </p>
     <div id="loading_main" class="loading"><img src="wkipe-dir/img/loading.gif" alt="just a sec..."></div>
@@ -155,7 +149,7 @@ function lang_change(){
     <p><ul class="sidebar" id="ul_recent"></ul></p>
   </div>
   <div id="footer" itemscope itemtype="http://schema.org/WPFooter">
-    <a href='#' type="local">Home</a> | <a href='#faq' type="local">FAQ</a> | <a href='#contact' type="local">Contact</a> | <a href='#legal' type="local">Legal</a> | 
+    <a href='#!' type="local">Home</a> | <a href='#!faq' type="local">FAQ</a> | <a href='#!contact' type="local">Contact</a> | <a href='#!legal' type="local">Legal</a> | 
     <span id='flattr'><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://wki.pe"></a></span>
 </div>
 </body>
