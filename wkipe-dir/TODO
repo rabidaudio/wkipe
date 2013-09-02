@@ -40,10 +40,10 @@ add all languages with aliasing
 *fix IE9 serialize bug (try to serialize manually?) http://bugs.jquery.com/ticket/11594
 protect against CSRF (and add API key feature)
 *fix href for local links so spiders don't crawl nonexistant pages
-add ajax crawlability for SEO: https://developers.google.com/webmasters/ajax-crawling/docs/getting-started
+*add ajax crawlability for SEO: https://developers.google.com/webmasters/ajax-crawling/docs/getting-started
 http://stackoverflow.com/questions/11299006/header-location-delay
 move from <meta> redirect to 302 (?)
-add API documentation to README
+*add API documentation to README
 
 *add sidebar of recently accessed links (neat-o, right!?)
 
