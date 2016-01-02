@@ -17,8 +17,14 @@
   },
   "homepage": "https://github.com/rabidaudio/wkipe#readme",
   "dependencies": {
+    "accept-language": "^2.0.16",
     "coffee-script": "^1.10.0",
+    "cookie-parser": "^1.4.0",
+    "dotenv": "^1.2.0",
     "express": "^4.13.3",
+    "morgan": "^1.6.1",
+    "mysql": "^2.10.0",
+    "power-radix": "^2.5.1",
     "sequelize": "^3.15.1"
   }
 }
