@@ -28,6 +28,9 @@ NormalLog = database.define 'normal_log', {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW
   }
+}, {
+  tableName: 'normal_log',
+  timestamps: false,
 }
 
 NormalLog.sync()

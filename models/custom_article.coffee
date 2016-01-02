@@ -43,6 +43,8 @@ CustomArticle = database.define 'custom_url', {
     defaultValue: Sequelize.NOW
   }
 }, {
+  timestamps: false,
+  tableName: 'custom_url',
   indexes: [
     fields: ['article']
   ],

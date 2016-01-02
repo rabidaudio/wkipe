@@ -87,8 +87,7 @@ function lang_setup(){
     });
   }
   //alert(mylang);
-  var langs = ["en", "nl", "de", "sv", "fr", "it", "es", "ru", "pl", "ja",
-         "vi", "pt", "war", "ceb", "zh", "uk", "ca"];
+  var langs = ["en", "nl", "de", "sv", "fr", "it", "es", "ru", "pl", "ja", "vi", "pt", "war", "ceb", "zh", "uk", "ca"];
   var selected = "";
   for(var i=0; i<langs.length;i++){
     if (langs[i]==mylang){

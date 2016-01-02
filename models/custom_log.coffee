@@ -25,10 +25,17 @@ CustomLog = database.define 'custom_log', {
   timestamp: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW
+  },
+  custom_url: {
+    type: Sequelize.INTEGER
   }
+}, {
+  tableName: 'custom_log',
+  timestamps: false,
 }
 
-CustomLog.hasOne(CustomArticle, {foreignKey: 'custom_url'});
+# name conflict causes all sorts of problems. Doing manually
+# CustomLog.belongsTo(CustomArticle, {as: '_custom_url', foreignKey: 'custom_url'});
 
 CustomLog.sync()
 

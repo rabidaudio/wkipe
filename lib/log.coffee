@@ -8,7 +8,7 @@ CustomLog = require '../models/custom_log'
 module.exports = (req, res, next) ->
   if req.custom_article?
     CustomLog.create({
-      custom_url: req.custom_article,
+      custom_url: req.custom_article?.custom_url_id,
       local: req.lang,
       ip_addr: req.ip
     })
