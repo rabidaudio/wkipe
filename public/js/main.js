@@ -13,7 +13,7 @@ $(document).ready(function() {
 	$('#txt_url').autocomplete({
 		source: function(request, response){
 			var searchstr=request.term;
-			var lang=$.cookie('lang');
+			var lang=Cookies.get('lang');
 			var url = "http://"+lang+".wikipedia.org/w/api.php";
 			var qs = {
 				action: 'opensearch',
@@ -68,7 +68,7 @@ function generateURL(){
 	formdata.api=false;
 	formdata.alias=$('#txt_alias').val();
 	if ($('#chk_locale').prop('checked')){
-		formdata.lang=$.cookie('lang');
+		formdata.lang=Cookies.get('lang');
 	}
 	if ($('#hdn_advanced').val()=='1'){
 		formdata.aliased=true;
@@ -93,7 +93,7 @@ function testArticle(){
 	if( urlpat.test( $('#txt_url').val() ) ){
 		article = $('#txt_url').val();
 	}else{
-		article = "http://"+$.cookie('lang')+".wikipedia.org/wiki/"+$('#txt_url').val().replace(/ /g, "_");
+		article = "http://"+Cookies.get('lang')+".wikipedia.org/wiki/"+$('#txt_url').val().replace(/ /g, "_");
 	}
 	//$('#ifr_article').hide();
 	$('#ifr_article').attr('src', article);

@@ -29,7 +29,7 @@ function setpage(destination){
   $('#inner_page').hide();
   $.ajax({
     url: "wkipe-dir/php/getpage.php", 
-    data: {page: destination, lang: $.cookie('lang')},
+    data: {page: destination, lang: Cookies.get('lang')},
     success: function(data, textStatus, jqXHR){
       $('#inner_page').html(data);
     },
@@ -48,15 +48,15 @@ function get_top_articles(){
       var customarticles = "<li><em>Top Custom Articles</em></li>";
       var recentarticles = "<li><em>Recently Accessed</em></li>";
       $('#span_articlecount').html('<h3>'+data.total_redirects+' redirects and counting!</h3>');
-      var host = new RegExp("[a-z0-9]?\.?wki\.pe/");
+      var host = new RegExp("(https?:\/\/)?[a-z0-9]?\.?wki\.pe/");
       for (var i=0;i<data.top_normal.length;i++){
-        normalarticles=normalarticles+'<li><a href="http://'+data.top_normal[i]+'">'+data.top_normal[i].replace(host,"")+'</a></li>';
+        normalarticles=normalarticles+'<li><a href="'+data.top_normal[i]+'">'+data.top_normal[i].replace(host,"")+'</a></li>';
       }
       for (var j=0;j<data.top_custom.length;j++){
-        customarticles=customarticles+'<li><a href="http://'+data.top_custom[j]+'">'+data.top_custom[j].replace(host,"")+'</a></li>';
+        customarticles=customarticles+'<li><a href="'+data.top_custom[j]+'">'+data.top_custom[j].replace(host,"")+'</a></li>';
       }
       for (var k=0;k<data.recent.length;k++){
-        recentarticles=recentarticles+'<li><a href="http://'+data.recent[k]+'">'+data.recent[k].replace(host,"")+'</a></li>';
+        recentarticles=recentarticles+'<li><a href="'+data.recent[k]+'">'+data.recent[k].replace(host,"")+'</a></li>';
       }
       $('#ul_topnormal').html(normalarticles);
       $('#ul_topcustom').html(customarticles);
@@ -66,22 +66,30 @@ function get_top_articles(){
 }
 
 function lang_setup(){
-  var mylang = $.cookie('lang');
+  var mylang = Cookies.get('lang');
+  console.log("cookie lang", mylang);
   //alert(mylang);
   if (mylang==null){
     $.ajax({
       url: "wkipe-dir/php/lang.php",
       success: function(data, textStatus, jqXHR){
-        mylang=data;
-        $.cookie('lang',mylang);
+        console.log("setting lang from server", data);
+        Cookies.set('lang', data, { expires: 7 });
+        set_selected(data);
       },
-      error: function(){//if it doesn't work, default to English
-        mylang="en";
-        $.cookie('lang',"en");
+      error: function(err){//if it doesn't work, default to English
+        console.log(err)
+        Cookies.set('lang',"en", { expires: 7 });
+        set_selected("en");
       }
     });
+  }else{
+    set_selected(mylang);
   }
   //alert(mylang);
+}
+
+function set_selected(mylang){
   var langs = ["en", "nl", "de", "sv", "fr", "it", "es", "ru", "pl", "ja", "vi", "pt", "war", "ceb", "zh", "uk", "ca"];
   var selected = "";
   for(var i=0; i<langs.length;i++){
@@ -95,5 +103,6 @@ function lang_setup(){
 }
 
 function lang_change(){
-  $.cookie('lang',$('#sel_lang').val());
+  Cookies.set('lang', $('#sel_lang').val(), { expires: 7 });
+  console.log("changing lang!", Cookies.get('lang'));
 }
