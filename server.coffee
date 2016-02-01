@@ -6,6 +6,12 @@ app = express()
 
 CustomArticle = require './models/custom_article'
 Sequence = require './lib/sequence'
+NormalLog = require './models/normal_log'
+CustomLog = require './models/custom_log'
+WikipediaUrl = require './lib/wikipedia_url'
+Sequelize = require 'sequelize'
+Promise = Sequelize.Promise
+sequelize = require './models/database'
 
 # local assets
 app.use express.static('public')
@@ -32,12 +38,24 @@ app.get '/wkipe-dir/php/getpage.php', (req, res) ->
 app.get '/wkipe-dir/php/toplinks.php', (req, res) ->
   console.log 'rendering top links'
   # TODO
-  res.status(200).json(
-    ["38630",
-      ["wki.pe/#!/faq","wki.pe/Bogosort","wki.pe/wp-admin/admin-ajax.php","wki.pe/index.php","wki.pe/Finnish_Air_Force"],
-      ["a.wki.pe/PCMR","a.wki.pe/Mosaic","a.wki.pe/julian","a.wki.pe/encoder","c.wki.pe/suspected_BPD_candidates"],
-      ["wki.pe/wiki/Near-open_front_unrounded_vowel","wki.pe/Bu00e9zier_curve","wki.pe/wiki/Glyphs","wki.pe/wiki/TenPages.com","wki.pe/wiki/Alpha"]
-    ])
+  Promise.all([
+    NormalLog.count(),
+    CustomLog.count(),
+    NormalLog.getTop(),
+    CustomLog.getTop(),
+    NormalLog.getRecent(),
+    CustomLog.getRecent(),
+  ]).then (results) ->
+    # flatten, sort by date
+    all_recent_articles = [].concat.apply([], [results[4], results[5]]).sort (a, b) -> b.timestamp.getTime() - a.timestamp.getTime()
+
+    res.status(200).json({
+      total_redirects: results[0]+results[1],
+      top_normal: (results[2].map (item) -> item.getShortURL()),
+      top_custom: (results[3].map (item) -> item.getShortURL()),
+      recent: (all_recent_articles.slice(0, 5).map (item) -> item.getShortURL())
+    })
+
 
 app.get '/wkipe-dir/php/lang.php', (req, res) ->
   console.log("rendering lang");
@@ -51,7 +69,6 @@ app.get '/wkipe-dir/php/api.php', (req, res) ->
 
 
 app.get '*', (req, res, next) ->
-  # TODO build redirect url (either direct or by database lookup)
   req.article = req.path.substring 1, req.path.length
   console.log "getting article", req.article
   if req.subdomain
@@ -65,7 +82,7 @@ app.get '*', (req, res, next) ->
       req.article_url = data?.getURL req.lang
       next()
   else
-    req.article_url = "https://#{req.lang}.wikipedia.org/wiki/Special:Search/#{req.article}"
+    req.article_url = WikipediaUrl(req.lang, req.article)
     next()
 
 # log the request to the database

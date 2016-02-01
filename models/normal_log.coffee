@@ -1,11 +1,12 @@
 Sequelize = require 'sequelize'
-database = require './database'
+sequelize = require './database'
+ShortUrl = require '../lib/short_url'
 
 ###
   A log record of a normal article
 ###
 # insert into normal_log (`article`, `locale`, `ip_addr`, `host`, `timestamp`)
-NormalLog = database.define 'normal_log', {
+NormalLog = sequelize.define 'normal_log', {
   normal_log_id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -31,6 +32,19 @@ NormalLog = database.define 'normal_log', {
 }, {
   tableName: 'normal_log',
   timestamps: false,
+  classMethods: {
+    getTop: () ->
+      @findAll({
+        attributes: {include: [[sequelize.fn('COUNT', sequelize.col('article')), 'count_article']]},
+        limit: 5,
+        order: [[sequelize.fn('COUNT', sequelize.col('article')), 'DESC']],
+        group: [ 'article' ]
+      })
+    getRecent: ()-> @findAll({ limit: 5, group: ['article'],    order: [['timestamp', 'DESC']] })
+  },
+  instanceMethods: {
+    getShortURL: () -> ShortUrl(this.article)
+  }
 }
 
 NormalLog.sync()

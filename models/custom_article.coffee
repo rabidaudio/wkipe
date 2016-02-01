@@ -1,11 +1,15 @@
 Sequelize = require 'sequelize'
-database = require './database'
+sequelize = require './database'
+
+ShortUrl = require '../lib/short_url'
+WikipediaUrl = require '../lib/wikipedia_url'
+Sequence = require '../lib/sequence'
 
 ###
   A custom article
 ###
 # INSERT INTO `custom_url` (`string`, `article`, `custom_id`, `ip_addr`, `host`, `locale`, `timestamp`)
-CustomArticle = database.define 'custom_url', {
+CustomArticle = sequelize.define 'custom_url', {
   custom_url_id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -36,7 +40,8 @@ CustomArticle = database.define 'custom_url', {
   },
   # null means locale of searcher
   locale: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    unique: 'compositeIndex'
   },
   timestamp: {
     type: Sequelize.DATE,
@@ -49,7 +54,8 @@ CustomArticle = database.define 'custom_url', {
     fields: ['article']
   ],
   instanceMethods: {
-    getURL: (lang) -> "https://#{lang}.wikipedia.org/wiki/Special:Search/#{this.article}"
+    getWikipediaURL: (lang) -> WikipediaUrl(lang, @article)
+    getShortURL: ()-> ShortUrl(this.name, Sequence.encode(this.custom_id))
   }
 }
 

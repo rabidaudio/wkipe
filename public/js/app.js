@@ -44,24 +44,19 @@ function get_top_articles(){
   $.ajax({
     url: "wkipe-dir/php/toplinks.php", 
     success: function(data, textStatus, jqXHR){
-      var datajson = $.parseJSON(data);
       var normalarticles = "<li><em>Top Normal Articles</em></li>";
       var customarticles = "<li><em>Top Custom Articles</em></li>";
       var recentarticles = "<li><em>Recently Accessed</em></li>";
-      var d = datajson[0];
-      $('#span_articlecount').html('<h3>'+d+' redirects and counting!</h3>');
-      d = datajson[1];
+      $('#span_articlecount').html('<h3>'+data.total_redirects+' redirects and counting!</h3>');
       var host = new RegExp("[a-z0-9]?\.?wki\.pe/");
-      for (var i=0;i<d.length;i++){
-        normalarticles=normalarticles+'<li><a href="http://'+d[i]+'">'+d[i].replace(host,"")+'</a></li>';
+      for (var i=0;i<data.top_normal.length;i++){
+        normalarticles=normalarticles+'<li><a href="http://'+data.top_normal[i]+'">'+data.top_normal[i].replace(host,"")+'</a></li>';
       }
-      d = datajson[2];
-      for (var j=0;j<d.length;j++){
-        customarticles=customarticles+'<li><a href="http://'+d[j]+'">'+d[j].replace(host,"")+'</a></li>';
+      for (var j=0;j<data.top_custom.length;j++){
+        customarticles=customarticles+'<li><a href="http://'+data.top_custom[j]+'">'+data.top_custom[j].replace(host,"")+'</a></li>';
       }
-      d = datajson[3];
-      for (var k=0;k<d.length;k++){
-        recentarticles=recentarticles+'<li><a href="http://'+d[k]+'">'+d[k].replace(host,"")+'</a></li>';
+      for (var k=0;k<data.recent.length;k++){
+        recentarticles=recentarticles+'<li><a href="http://'+data.recent[k]+'">'+data.recent[k].replace(host,"")+'</a></li>';
       }
       $('#ul_topnormal').html(normalarticles);
       $('#ul_topcustom').html(customarticles);

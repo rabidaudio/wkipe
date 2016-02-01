@@ -6,6 +6,7 @@ CustomLog = require '../models/custom_log'
   Log all redirects to database
 ###
 module.exports = (req, res, next) ->
+  return next() if req.path.match /wkipe-dir/
   if req.custom_article?
     CustomLog.create({
       custom_url: req.custom_article?.custom_url_id,

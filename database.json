@@ -1,0 +1,11 @@
+{
+  "defaultEnv": "prod",
+  "prod": {
+    "driver": {"ENV": "DB_DIALECT"},
+    "user": {"ENV": "DB_USER"},
+    "password": {"ENV": "DB_PASS"},
+    "database": {"ENV": "DB_NAME"},
+    "host": {"ENV": "DB_HOST"},
+    "multipleStatements": true
+  }
+}
