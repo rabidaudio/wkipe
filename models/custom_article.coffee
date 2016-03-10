@@ -56,6 +56,9 @@ CustomArticle = sequelize.define 'custom_url', {
   instanceMethods: {
     getWikipediaURL: (lang) -> WikipediaUrl(lang, @article)
     getShortURL: ()-> ShortUrl(this.name, Sequence.encode(this.custom_id))
+  },
+  classMethods: {
+    # getNextSequence
   }
 }
 

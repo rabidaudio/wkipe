@@ -12,18 +12,23 @@ WikipediaUrl = require './lib/wikipedia_url'
 Sequelize = require 'sequelize'
 Promise = Sequelize.Promise
 sequelize = require './models/database'
+BodyParser = require 'body-parser'
+Strip = require 'strip'
 
 # local assets
 app.use express.static('public')
 # bower assets
 app.use express.static('bower_components')
 
+app.use BodyParser.json()
+app.use BodyParser.urlencoded(extended: false)
+
 # subdomain parse middleware
 app.use require './lib/subdomain'
 # language parse middleware
 require('./lib/lang')(app)
 # logging middleware
-app.use(require('morgan')('combined'))
+app.use require('morgan')('combined')
 
 app.get '/', (req, res) ->
   console.log('rendering main');
@@ -61,7 +66,23 @@ app.get '/wkipe-dir/php/lang.php', (req, res) ->
   console.log("rendering lang");
   res.status(200).send req.lang
 
-app.get '/wkipe-dir/php/generate.php', (req, res) ->
+app.post '/wkipe-dir/php/generate.php', (req, res) ->
+  console.log req.body
+  console.log req.body.api
+  return res.end('<p>You must include the destination URL. <a href=\"index\" dest=\"local\">Click here</a> to try again.</p>') unless req.body.article
+  if req.body.aliased and req.body.alias == ""
+    return req.end('<p>You must include an alias, or generate a normal link. <a href=\"index\" dest=\"local\">Click here</a> to try again.</p>')
+  stripped = Strip req.body.article
+  result = ""
+  if stripped != req.body.article
+    result += '<p>Warning: we found HTML tags in your link and removed them for security reasons. If you think this is an error, <a href=\"contact\" dest=\"local\">tell me</a>.</p>'
+  article = req.body.article.replace(/^https?:\/\//, '').replace(/.*?wikipedia.org\/wiki\//, '').replace(/\s+/, '_')
+  if req.body.aliased
+    alias = req.body.alias.replace ' ', '_'
+    # if it already exists
+    CustomArticle.
+
+    CustomArticle.create()
   res.sendStatus 404 #TODO
 
 app.get '/wkipe-dir/php/api.php', (req, res) ->
